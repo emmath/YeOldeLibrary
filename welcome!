@@ -1,0 +1,50 @@
+book_hash = {
+    "Churnin' Butter" => "Edith Olde",
+    "Fallow Field" => "Ezra Timey",
+    "Do I Have Dysentary?" => "Charles Doctor",
+    "Blankets from Friends" => "Emily Native"
+}
+
+shelf_hash = {
+    "Shelf 1" => "Cooking",
+    "Shelf 2" => "Farming",
+    "Shelf 3" => "Health"
+}
+
+organize_the_books = {
+    "Churnin' Butter" => "Shelf 1",
+    "Fallow Field" => "Shelf 2",
+    "Do I Have Dysentary?" => "Shelf 3",
+    "Blankets from Friends" => "Shelf 3"
+}
+
+
+
+puts "Welcome to Ye Olde Library!"
+puts "take a look around!"
+
+shelf_hash.each { |shelf,category| puts "On #{shelf} you can find books on #{category}"}
+
+puts "Interested in a specific book?"
+puts "Ye Olde Library currently stocks the following:"
+
+book_hash.each { |title,author| puts "#{title} by #{author}"}
+
+puts "Not sure where to start?"
+
+organize_the_books.each { |name, shelf| puts " #{name} is on #{shelf}!"}
+
+puts "If you would like to know where a book is, type 'book'"
+puts "If want to know how many shelves are in the library, type 'shelf'"
+
+choice = gets.chomp.downcase
+case choice
+when 'book'
+puts "Which book are you looking for?"
+title = gets.chomp
+    if book_hash[title.to_sym].nil?
+    puts "We don't have that book!"
+    else
+    puts "Sorry! I didn't understand that!"
+end
+end
