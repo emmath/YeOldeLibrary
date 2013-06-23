@@ -1,157 +1,89 @@
- class Shelf
- @@array = Array.new
- attr_accessor :name
- 
- def self.total_instances
-    @@array
- 
-end
-def initialize(name)
-    @name = name
-    @@array << self
-end
-end
-
-shelf1 = Shelf.new(:"Cooking")
-shelf2 = Shelf.new(:"Farming")
-shelf3 = Shelf.new(:"Health")
- 
  class Book
-  @@array = Array.new
-  attr_accessor :title, :author
+@@book_count = 0
 
-  def self.all_instances
-    @@array
-  end
-
-  def initialize(title, author)
+def initialize(title, author, shelf)
     @title = title
     @author = author
+    @shelf = shelf
+    @@book_count += 1
+end
+def title
+    @title
+end
+def author
+    @author
+end
+def shelf
+    @shelf
+end
+def shelf=(newShelf) #changes shelf
+    @shelf = newShelf
+end
+def where
+    puts "Looking for this? #{@title} is on #{@shelf}!"
+end
+def self.number_of_books
+puts "So many books! Ye Olde Library has #{@@book_count} of 'em!" 
+end
+end
+    book1 = Book.new("Churnin' Butter","Edith Olde", "shelf 1")
+    book2 = Book.new("Fallow Field", "Ezra Timey", "shelf 2")
+    book3 = Book.new("Do I Have Dysentary?", "Charles Doctor", "shelf 3")
+    book4 = Book.new("Blankets for Friends", "Emily Native","shelf 3")
+    
+class Library
+@@shelf_count = 0
+@@array = Array.new
+
+def initialize(book, shelf)
+    @book = book
+    @shelf = shelf
+    @@shelf_count += 1
     @@array << self
-  end
- 
-  
 end
 
-book1 = Book.new(:"Churnin' Butter",:"Edith Olde")
-book2 = Book.new(:"Fallow Field", :"Ezra Timey")
-book3 = Book.new(:"Do I Have Dysentary?", :"Charles Doctor")
-book4 = Book.new(:"Blankets for Friends", :"Emily Native")
+def self.number_of_shelves #count of shelves in library
+    puts "Don't get lost! Ye Olde Library has #{@@shelf_count} shelves!"
+end
 
+def self.report_books #list of all items, hopefully!
+    puts "Ye Olde Library has all the best books. They are:"
+    @@array
+end 
+def book
+    @book
+end
+def where
+    puts "Looking for this? #{@book} is on #{@shelf}!"
+end
+end
 
-Book.all_instances
+item1 = Library.new("Churnin' Butter", "shelf 1")
+item2 = Library.new("Fallow Field", "shelf 2")
+item3 = Library.new("Do I Have Dysentary?", "shelf 3")
+item4 = Library.new("Blankets from Friends", "shelf 3")
 
-Shelf.total_instances
-
+class Shelf
 books = {
     "Churnin' Butter" => "Edith Olde",
     "Fallow Field" => "Ezra Timey",
     "Do I Have Dysentary?" => "Charles Doctor",
     "Blankets from Friends" => "Emily Native"
 }
-
-shelves = {
-    "Shelf 1" => "Cooking",
-    "Shelf 2" => "Farming",
-    "Shelf 3" => "Health"
-}
-
-books_on_shelves = {
-    {"Shelf 1" => "Cooking"} => {"Churnin' Butter" => "Edith Olde"},
-    {"Shelf 2" => "Farming"} => {"Fallow Field" => "Ezra Timey"},
-    {"Shelf 3" => "Health"} => {"Do I Have Dysentary?" => "Charles Doctor"}
-}
-organize_the_books = {
-    "Churnin' Butter" => "Shelf 1",
-    "Fallow Field" => "Shelf 2",
-    "Do I Have Dysentary?" => "Shelf 3",
-    "Blankets from Friends" => "Shelf 3"
-}
-class Library
-attr_reader :shelves, :books
-def initialize(shelves, books)
-    @shelves = shelves
-    @books = books
-end
-def report_books
-    return book_hash.each { |title,author| puts "#{title} by #{author}"}
-    #reports all books in the library
-end
-def report_shelves
-    return shelf_hash.each { |shelf,category| puts "On #{shelf} you can find books on #{category}"}
-    #tells the shelves in the library
-    else
-    return "So organized! #{@books} is on the #{shelves} shelf!"
-    #hopefully one of these works...
-end
-end
-
-shelf1 = Library.new("Cooking", "Churnin' Butter")
-shelf2 = Library.new("Farming", "Fallow Field")
-shelf3 = Library.new("Health", "Do I Have Dysentary?")
-    
-class Book
-@@book_count = 0
-attr_reader :title, :author
-@@instance_collector = []
-def initialize(title, author)
-    @title = title
-    @author = author
-    @@book_count += 1
-end
- def description
-    puts "You got a book: #{@title} by #{@author}!"
-    end
-  def self.all_offspring
-    @@instance_collector
-end
-def self.number_of_books
-return @@book_count
-end
-def unshelf
-    title = gets.chomp
-    #puts book somewhere new
-    books_on_shelves[title.to_sym] = shelf.to_i
-def enshelf
-#returns book to original shelf
-end
-
-book1 = Book.new("Churnin' Butter","Edith Olde")
-book2 = Book.new("Fallow Field", "Ezra Timey")
-book3 = Book.new("Do I Have Dysentary?", "Charles Doctor")
-book4 = Book.new("Blankets for Friends", "Emily Native")
-
-Book.all_offspring
-
-class Shelf
 def initialize(shelf)
     @shelf = shelf
 end
-def organize_it
-    return organize_the_books.each { |name, shelf| puts " #{name} is on #{shelf}!"}
+def where
+    puts "You will find that on #{@shelf}!"
+end
+def report_books
+    puts book_hash.each { |title,author| puts "#{title} by #{author}"}
+    #reports all books in the library
+end
 end
 
-shelf_hash = {
-    "Shelf 1" => "Cooking",
-    "Shelf 2" => "Farming",
-    "Shelf 3" => "Health"
-}
 
-organize_the_books = {
-    "Churnin' Butter" => "Shelf 1",
-    "Fallow Field" => "Shelf 2",
-    "Do I Have Dysentary?" => "Shelf 3",
-    "Blankets from Friends" => "Shelf 3"
-}
-
-organize_the_books.each { |name, shelf| puts " #{name} is on #{shelf}!"}
-
-puts "Welcome to Ye Olde Library!"
-puts "take a look around!"
-
-shelf_hash.each { |shelf,category| puts "On #{shelf} you can find books on #{category}"}
-
-puts "Interested in a specific book?"
-puts "Ye Olde Library currently stocks the following:"
-
-book_hash.each { |title,author| puts "#{title} by #{author}"}
+cooking = Shelf.new("shelf 1")
+farming = Shelf.new("shelf 2")
+health = Shelf.new("shelf 3")
+society = Shelf.new("shelf 4")
