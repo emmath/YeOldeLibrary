@@ -87,3 +87,13 @@ cooking = Shelf.new("shelf 1")
 farming = Shelf.new("shelf 2")
 health = Shelf.new("shelf 3")
 society = Shelf.new("shelf 4")
+
+puts "Welcome to Ye Olde Library!"
+puts "Like to count?" 
+puts "type 'Book.number_of_books' to find out how many books we have!"
+puts "Looking for something?" 
+puts "type 'Classname.where' to find out where it is!"
+puts "Want to be a librarian's worst nightmare and move a book?"
+puts "type 'book1-4.shelf = shelf1-4' to put it on to a new shelf!"
+puts "Want to know what books are in the library?" 
+puts "type 'Library.report_books' to see them!"
