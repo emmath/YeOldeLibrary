@@ -1,4 +1,4 @@
- class Book
+class Book
 @@book_count = 0
 
 def initialize(title, author, shelf)
@@ -29,7 +29,7 @@ end
     book1 = Book.new("Churnin' Butter","Edith Olde", "shelf 1")
     book2 = Book.new("Fallow Field", "Ezra Timey", "shelf 2")
     book3 = Book.new("Do I Have Dysentary?", "Charles Doctor", "shelf 3")
-    book4 = Book.new("Blankets for Friends", "Emily Native","shelf 3")
+    book4 = Book.new("Blankets for Friends", "Emily Native","shelf 4")
     
 class Library
 @@shelf_count = 0
@@ -61,7 +61,7 @@ end
 item1 = Library.new("Churnin' Butter", "shelf 1")
 item2 = Library.new("Fallow Field", "shelf 2")
 item3 = Library.new("Do I Have Dysentary?", "shelf 3")
-item4 = Library.new("Blankets from Friends", "shelf 3")
+item4 = Library.new("Blankets from Friends", "shelf 4")
 
 class Shelf
 books = {
@@ -76,8 +76,8 @@ end
 def where
     puts "You will find that on #{@shelf}!"
 end
-def report_books
-    puts book_hash.each { |title,author| puts "#{title} by #{author}"}
+def self.report_books
+    puts book.each { |title,author| puts "#{title} by #{author}"}
     #reports all books in the library
 end
 end
