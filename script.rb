@@ -16,14 +16,14 @@ end
 def shelf
     @shelf
 end
-def shelf=(newShelf) #changes shelf
+def shelf=(newShelf) #"enshelf" and "unshelf": changes shelf to the best that I could figure out!
     @shelf = newShelf
 end
-def where
+def where #typing in book instance name returns which shelf it is on
     puts "Looking for this? #{@title} is on #{@shelf}!"
 end
-def self.number_of_books
-puts "So many books! Ye Olde Library has #{@@book_count} of 'em!" 
+def self.number_of_books #returns the number of shelves in the library
+    puts "So many books! Ye Olde Library has #{@@book_count} of 'em!" 
 end
 end
     book1 = Book.new("Churnin' Butter","Edith Olde", "shelf 1")
@@ -46,14 +46,14 @@ def self.number_of_shelves #count of shelves in library
     puts "Don't get lost! Ye Olde Library has #{@@shelf_count} shelves!"
 end
 
-def self.report_books #list of all items, hopefully!
+def self.report_books #list(array) of all books in the library!
     puts "Ye Olde Library has all the best books. They are:"
     @@array
 end 
 def book
     @book
 end
-def where
+def where #returns where to find which item
     puts "Looking for this? #{@book} is on #{@shelf}!"
 end
 end
@@ -64,31 +64,38 @@ item3 = Library.new("Do I Have Dysentary?", "shelf 3")
 item4 = Library.new("Blankets from Friends", "shelf 4")
 
 class Shelf
-books = {
+@@array = Array.new
+books = { 
     "Churnin' Butter" => "Edith Olde",
     "Fallow Field" => "Ezra Timey",
     "Do I Have Dysentary?" => "Charles Doctor",
     "Blankets from Friends" => "Emily Native"
-}
-def initialize(shelf)
+} #not sure a hash is possible inside a class--suspect it isn't, but thought I would try!
+def initialize(shelf, book)
     @shelf = shelf
+    @book = book
+    @@array << self
 end
-def where
+def where #returns on which shelf to find a book on a specific subject
     puts "You will find that on #{@shelf}!"
 end
-def self.report_books
-    puts book.each { |title,author| puts "#{title} by #{author}"}
+def self.report_books #shelf knows and reports all books
+    puts "Wondering what books are on all these shelves?"
+    @@array
+end
+def self.all_books #I wish this would work to report all books!
+    books.each { |title,author| puts "#{title} by #{author}"}
     #reports all books in the library
 end
 end
 
 
-cooking = Shelf.new("shelf 1")
-farming = Shelf.new("shelf 2")
-health = Shelf.new("shelf 3")
-society = Shelf.new("shelf 4")
+cooking = Shelf.new("shelf 1","Churnin' Butter")
+farming = Shelf.new("shelf 2", "Fallow Field")
+health = Shelf.new("shelf 3", "Do I Have Dysentary?")
+society = Shelf.new("shelf 4", "Blankets from Friends")
 
-puts "Welcome to Ye Olde Library!"
+puts "Welcome to Ye Olde Library!" #a little intro to be welcoming!
 puts "Like to count?" 
 puts "type 'Book.number_of_books' to find out how many books we have!"
 puts "Looking for something?" 
